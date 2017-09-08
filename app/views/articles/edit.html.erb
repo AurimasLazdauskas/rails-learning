@@ -8,8 +8,15 @@
 <% @tags.each do |tag| %>
     <%= link_to tag.name, controller: "tags", action: "new", id: tag.id %>
 
-    <%= form_for @article, url: article_add_tag_path(@article), method: :post, html: { style="display:none" id="#{tag.id}"} do |f| %>
+    <%= form_for tag, :url => {:controller => 'articles', :action => 'add_tag'}, method: :post, html: {   id: ""} do |f| %>
+        <p>
+          <%= f.label :name %><br>
+          <%= f.text_area :name %>
+        </p>
 
+        <p>
+          <%= f.submit %>
+        </p>
     <% end %>
 
 

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :tags
   end
 
-  get 'articles/add_tag/:id/:tag_id', to: 'articles#add_tag'
+  post 'articles/add_tag/', to: 'articles#add_tag'
 
   resources :tags
 
