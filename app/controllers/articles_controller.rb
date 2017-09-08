@@ -17,6 +17,8 @@ class ArticlesController < ApplicationController
     def edit
         @article = Article.find(params[:id])
         @tags = Tag.all
+
+        template = lookup_context.find_template("edit", "articles")
     end
 
     def create
