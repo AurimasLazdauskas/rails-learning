@@ -6,13 +6,16 @@
 <h2>Add Tags</h2>
 
 <% @tags.each do |tag| %>
-    <%= link_to tag.name, controller: "tags", action: "new", id: tag.id %>
+    <%= link_to tag.name, html: { href: "javascript:{}",
+    onclick: "document.getElementById('#{tag.id}').submit(); return false;"}, id: tag.id %>
 
-    <%= form_for tag, :url => {:controller => 'articles', :action => 'add_tag'}, method: :post, html: {   id: ""} do |f| %>
-        <p>
-          <%= f.label :name %><br>
-          <%= f.text_area :name %>
-        </p>
+    <%= form_for tag, :url => {:controller => 'articles', :action => 'add_tag'}, method: :post, html: { style: "display:none",  id: "#{tag.id}"} do |f| %>
+
+          <%= f.text_field :id, input_html: { value: @article.id } %>
+          <%= f.text_field :name, input_html: { value: tag.id } %>
+          <!-- <input type="text"  -->
+          <%= '<input type="text" value="#{tag.id}" name="id" id="#{tag.id}">' %>
+          <%= '<input type="text" value="#{tag.id}" name="tag_id" id="#{tag.id}">' %>
 
         <p>
           <%= f.submit %>
