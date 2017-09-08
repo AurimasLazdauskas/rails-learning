@@ -11,11 +11,11 @@
 
     <%= form_for tag, :url => {:controller => 'articles', :action => 'add_tag'}, method: :post, html: { style: "display:none",  id: "#{tag.id}"} do |f| %>
 
-          <%= f.text_field :id, input_html: { value: @article.id } %>
-          <%= f.text_field :name, input_html: { value: tag.id } %>
           <!-- <input type="text"  -->
-          <%= '<input type="text" value="#{tag.id}" name="id" id="#{tag.id}">' %>
-          <%= '<input type="text" value="#{tag.id}" name="tag_id" id="#{tag.id}">' %>
+          <input type="text" value="<%= @article.id %>" name="article[id]">
+          <input type="text" value="<%= @article.title %>" name="article[title]">
+          <input type="text" value="<%= @article.text %>" name="article[text]">
+          <input type="text" value="<%= tag.id %>" name="tag_id" id="#{tag.id}">
 
         <p>
           <%= f.submit %>
