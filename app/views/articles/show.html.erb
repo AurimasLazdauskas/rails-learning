@@ -9,6 +9,13 @@
   <%= @article.text %>
 </p>
 
+<h2>Tags</h2>
+<%= render @article.tags %>
+
+<h2>Add a tag:</h2>
+<%= render 'tags/form' %>
+
+
 <h2>Comments</h2>
 <%= render @article.comments %>
 

@@ -3,4 +3,13 @@
 
 <%= render 'form' %>
 
+<h2>Add Tags</h2>
+
+<% @tags.each do |tag| %>
+    <%= link_to tag.name, controller: "tags", action: "new", id: tag.id %>
+<% end %>
+
+<h3>Create new tag:</h3>
+<%= render 'tags/form' %>
+
 <%= link_to 'Back', articles_path %>

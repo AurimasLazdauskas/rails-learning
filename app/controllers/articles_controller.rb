@@ -16,6 +16,7 @@ class ArticlesController < ApplicationController
 
     def edit
         @article = Article.find(params[:id])
+        @tags = Tag.all
     end
 
     def create
@@ -43,6 +44,10 @@ class ArticlesController < ApplicationController
         @article.destroy
 
         redirect_to articles_path
+    end
+
+    def add_tag
+        redirect_to 'edit'
     end
 
     private
