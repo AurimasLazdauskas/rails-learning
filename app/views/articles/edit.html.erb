@@ -3,19 +3,24 @@
 
 <%= render 'form' %>
 
+<%= debug(@article) %>
+<%= debug(@some) %>
+
+<h2>Tags</h2>
+<%= render @article.tags %>
+
 <h2>Add Tags</h2>
 
 <% @tags.each do |tag| %>
-    <%= link_to tag.name, html: { href: "javascript:{}",
-    onclick: "document.getElementById('#{tag.id}').submit(); return false;"}, id: tag.id %>
+    <a href="#" onclick="document.getElementById('tag_<%= tag.id %>').submit(); return false;"><%= tag.name %></a>
 
-    <%= form_for tag, :url => {:controller => 'articles', :action => 'add_tag'}, method: :post, html: { style: "display:none",  id: "#{tag.id}"} do |f| %>
+    <%= form_for tag, :url => {:controller => 'articles', :action => 'add_tag'}, method: :post, html: { style: "display:none",  id: "tag_#{tag.id}"} do |f| %>
 
           <!-- <input type="text"  -->
           <input type="text" value="<%= @article.id %>" name="article[id]">
           <input type="text" value="<%= @article.title %>" name="article[title]">
           <input type="text" value="<%= @article.text %>" name="article[text]">
-          <input type="text" value="<%= tag.id %>" name="tag_id" id="#{tag.id}">
+          <input type="text" value="<%= tag.id %>" name="tag_id" id="<%= tag.id %>">
 
         <p>
           <%= f.submit %>

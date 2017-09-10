@@ -47,7 +47,17 @@ class ArticlesController < ApplicationController
     end
 
     def add_tag
-        redirect_to 'edit'
+
+        @tag = Tag.find(params[:tag_id])
+        abort("aborted")
+
+        @article = Article.find(2)
+        @article.tags << @tag
+        @article.save
+
+        @some = 5
+
+        render 'edit'
     end
 
     private
