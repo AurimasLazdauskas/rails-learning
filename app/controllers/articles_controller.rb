@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
 
     def edit
         @article = Article.find(params[:id])
-        @tags = Tag.all
+        @tags = Tag.all - @article.tags
     end
 
     def create
@@ -47,15 +47,14 @@ class ArticlesController < ApplicationController
     end
 
     def add_tag
-
         @tag = Tag.find(params[:tag_id])
-        abort("aborted")
 
-        @article = Article.find(2)
-        @article.tags << @tag
-        @article.save
+        @article = Article.find(params.require(:article).permit(:id)['id'].to_i)
 
-        @some = 5
+        @tag.articles << @article
+        @tag.save
+
+        @tags = Tag.all - @article.tags
 
         render 'edit'
     end
