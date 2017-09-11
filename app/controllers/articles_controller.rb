@@ -49,7 +49,7 @@ class ArticlesController < ApplicationController
     def add_tag
         @tag = Tag.find(params[:tag_id])
 
-        @article = Article.find(params.require(:article).permit(:id)['id'].to_i)
+        @article = Article.find(params[:article][:id].to_i)
 
         @tag.articles << @article
         @tag.save
